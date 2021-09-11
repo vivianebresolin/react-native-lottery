@@ -1,14 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Button, View, StyleSheet } from 'react-native';
-import ModalitiesContext from '../../context/ModalitiesContext';
+
+import NumbersContext from '../../context/NumbersContext';
 import { LotteryBall } from '../LotteryBall/index';
 
 export const LotteryNumbers = () => {
-  const { indexSelectedModality } = useContext(ModalitiesContext);
-  const [qtyNumbers, setQtyNumbers] = useState(10);
+  const { qtyNumbersToGenerate, maxNumber } = useContext(NumbersContext);
   const [numbersArray, setNumbersArray] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(false);
-  let maxNumber = 60;
 
   function getNotRepeatedNumber(nums) {
     const newNumber = parseInt(Math.random() * maxNumber, 10) + 1;
@@ -16,13 +15,12 @@ export const LotteryNumbers = () => {
   }
 
   function getNumbers() {
-    const numbers = Array(qtyNumbers)
+    const numbers = Array(qtyNumbersToGenerate)
       .fill()
       .reduce(n => [...n, getNotRepeatedNumber(n)], [])
       .sort((a, b) => a - b);
 
     setNumbersArray(numbers);
-    console.warn(indexSelectedModality);
   }
 
   return (

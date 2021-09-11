@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
@@ -15,9 +15,12 @@ export const SelectModality = () => {
     updateSelectedModality,
     updateIndexModality,
   } = useContext(ModalitiesContext);
-  const { getArrayQtyNumbersToBet, qtyNumbersToBet, qtyNumbersToGenerate } =
-    useContext(NumbersContext);
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const {
+    getArrayQtyNumbersToBet,
+    arrayQtyNumbersToBet,
+    qtyNumbersToGenerate,
+    getQtyNumbersToGenerate,
+  } = useContext(NumbersContext);
 
   return (
     <View style={styles.container}>
@@ -26,8 +29,9 @@ export const SelectModality = () => {
           Escolha a modalidade:
         </Title>
       </View>
-      <View>
+      <View style={styles.selectContainer}>
         <Picker
+          style={styles.select}
           selectedValue={selectedModality}
           onValueChange={(modalityName, modalityIndex) => {
             updateSelectedModality(modalityName);
@@ -44,22 +48,28 @@ export const SelectModality = () => {
             ))}
         </Picker>
       </View>
-      {qtyNumbersToBet.length !== 0 && (
+      {arrayQtyNumbersToBet.length !== 0 && (
         <View>
-          <Picker
-            selectedValue={qtyNumbersToGenerate}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedLanguage(itemValue)
-            }>
-            {qtyNumbersToBet &&
-              qtyNumbersToBet.map(modality => (
-                <Picker.Item
-                  key={modality}
-                  label={modality.toString()}
-                  value={modality}
-                />
-              ))}
-          </Picker>
+          <View>
+            <Title fontSize={FONT_SIZE_MEDIUM} mb={2}>
+              Quantidade de números:
+            </Title>
+          </View>
+          <View style={styles.selectContainer}>
+            <Picker
+              style={styles.select}
+              selectedValue={qtyNumbersToGenerate}
+              onValueChange={qty => getQtyNumbersToGenerate(qty)}>
+              {arrayQtyNumbersToBet &&
+                arrayQtyNumbersToBet.map(modality => (
+                  <Picker.Item
+                    key={modality}
+                    label={modality.toString()}
+                    value={modality}
+                  />
+                ))}
+            </Picker>
+          </View>
         </View>
       )}
     </View>
@@ -70,5 +80,11 @@ const styles = StyleSheet.create({
   container: {
     width: '60%',
     marginBottom: 16,
+  },
+  select: {
+    width: '65%',
+  },
+  selectContainer: {
+    alignItems: 'center',
   },
 });
