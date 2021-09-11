@@ -1,28 +1,41 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import { Title } from '../Title';
-import { Modalities } from '../../constants/modalities';
-import { FONT_SIZE_MEDIUM } from '../../styles/styles';
 
-export const SelectModality = ({ updateIndexModality }) => {
-  const [selectedModality, setSelectedModality] = useState();
+import { FONT_SIZE_MEDIUM } from '../../styles/styles';
+import ModalitiesContext from '../../context/ModalitiesContext';
+
+export const SelectModality = () => {
+  const {
+    modalities,
+    selectedModality,
+    updateSelectedModality,
+    updateIndexModality,
+  } = useContext(ModalitiesContext);
 
   return (
     <View style={styles.container}>
-      <Title fontSize={FONT_SIZE_MEDIUM} mb={2}>
-        Escolha a modalidade:
-      </Title>
+      <View>
+        <Title fontSize={FONT_SIZE_MEDIUM} mb={2}>
+          Escolha a modalidade:
+        </Title>
+      </View>
       <Picker
         selectedValue={selectedModality}
         onValueChange={(modalityName, modalityIndex) => {
-          setSelectedModality(modalityName);
+          updateSelectedModality(modalityName);
           updateIndexModality(modalityIndex);
         }}>
-        {Modalities.map(modality => (
-          <Picker.Item label={modality.name} value={modality.name} />
-        ))}
+        {modalities &&
+          modalities.map(modality => (
+            <Picker.Item
+              key={modality.name}
+              label={modality.name}
+              value={modality.name}
+            />
+          ))}
       </Picker>
     </View>
   );

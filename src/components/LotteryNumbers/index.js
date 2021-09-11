@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, View, StyleSheet } from 'react-native';
+import ModalitiesContext from '../../context/ModalitiesContext';
 import { LotteryBall } from '../LotteryBall/index';
 
-export const LotteryNumbers = ({ indexModality }) => {
-  const [qtdNumbers, setQtdNumbers] = useState(10);
+export const LotteryNumbers = () => {
+  const { indexSelectedModality } = useContext(ModalitiesContext);
+  const [qtyNumbers, setQtyNumbers] = useState(10);
   const [numbersArray, setNumbersArray] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   let maxNumber = 60;
@@ -14,17 +16,17 @@ export const LotteryNumbers = ({ indexModality }) => {
   }
 
   function getNumbers() {
-    const numbers = Array(qtdNumbers)
+    const numbers = Array(qtyNumbers)
       .fill()
       .reduce(n => [...n, getNotRepeatedNumber(n)], [])
       .sort((a, b) => a - b);
 
     setNumbersArray(numbers);
-    console.warn(indexModality);
+    console.warn(indexSelectedModality);
   }
 
   return (
-    <View style={styles.container}>
+    <>
       <View style={styles.buttonContainer}>
         <Button
           title="Gerar números"
@@ -39,16 +41,14 @@ export const LotteryNumbers = ({ indexModality }) => {
             <LotteryBall key={number} number={number} />
           ))}
       </View>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   buttonContainer: {
+    width: '100%',
     marginBottom: 12,
-  },
-  container: {
-    alignItems: 'center',
   },
   generatedNumbers: {
     flexDirection: 'row',
