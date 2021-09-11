@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import { Title } from '../Title';
+import ModalitiesContext from '../../context/ModalitiesContext';
+import NumbersContext from '../../context/NumbersContext';
 
 import { FONT_SIZE_MEDIUM } from '../../styles/styles';
-import ModalitiesContext from '../../context/ModalitiesContext';
 
 export const SelectModality = () => {
   const {
@@ -14,6 +15,9 @@ export const SelectModality = () => {
     updateSelectedModality,
     updateIndexModality,
   } = useContext(ModalitiesContext);
+  const { getArrayQtyNumbersToBet, qtyNumbersToBet, qtyNumbersToGenerate } =
+    useContext(NumbersContext);
+  const [selectedLanguage, setSelectedLanguage] = useState();
 
   return (
     <View style={styles.container}>
@@ -22,21 +26,42 @@ export const SelectModality = () => {
           Escolha a modalidade:
         </Title>
       </View>
-      <Picker
-        selectedValue={selectedModality}
-        onValueChange={(modalityName, modalityIndex) => {
-          updateSelectedModality(modalityName);
-          updateIndexModality(modalityIndex);
-        }}>
-        {modalities &&
-          modalities.map(modality => (
-            <Picker.Item
-              key={modality.name}
-              label={modality.name}
-              value={modality.name}
-            />
-          ))}
-      </Picker>
+      <View>
+        <Picker
+          selectedValue={selectedModality}
+          onValueChange={(modalityName, modalityIndex) => {
+            updateSelectedModality(modalityName);
+            updateIndexModality(modalityIndex);
+            getArrayQtyNumbersToBet(modalityIndex);
+          }}>
+          {modalities &&
+            modalities.map(modality => (
+              <Picker.Item
+                key={modality.name}
+                label={modality.name}
+                value={modality.name}
+              />
+            ))}
+        </Picker>
+      </View>
+      {qtyNumbersToBet.length !== 0 && (
+        <View>
+          <Picker
+            selectedValue={qtyNumbersToGenerate}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedLanguage(itemValue)
+            }>
+            {qtyNumbersToBet &&
+              qtyNumbersToBet.map(modality => (
+                <Picker.Item
+                  key={modality}
+                  label={modality.toString()}
+                  value={modality}
+                />
+              ))}
+          </Picker>
+        </View>
+      )}
     </View>
   );
 };

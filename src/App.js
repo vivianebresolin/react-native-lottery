@@ -5,15 +5,18 @@ import { LotteryNumbers } from './components/LotteryNumbers';
 import { SelectModality } from './components/SelectModality';
 import { Title } from './components/Title';
 import { ModalitiesProvider } from './context/ModalitiesContext';
+import { NumbersProvider } from './context/NumbersContext';
 
 const App = () => {
   return (
     <ModalitiesProvider>
-      <SafeAreaView style={styles.container}>
-        <Title mb={32}>Números aleatórios para Loteria</Title>
-        <SelectModality />
-        <LotteryNumbers />
-      </SafeAreaView>
+      <NumbersProvider>
+        <SafeAreaView style={styles.container}>
+          <Title mb={32}>Números aleatórios para Loteria</Title>
+          <SelectModality />
+          <LotteryNumbers />
+        </SafeAreaView>
+      </NumbersProvider>
     </ModalitiesProvider>
   );
 };

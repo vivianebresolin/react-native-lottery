@@ -4,7 +4,7 @@ import { modalities } from '../constants/modalities';
 const ModalitiesContext = createContext({});
 
 export const ModalitiesProvider = props => {
-  const [selectedModality, setSelectedModality] = useState('');
+  const [selectedModality, setSelectedModality] = useState();
   const [indexSelectedModality, setIndexSelectedModality] = useState(0);
 
   function updateSelectedModality(modality) {

@@ -1,6 +1,6 @@
 export const modalities = [
   {
-    name: 'Selecione aqui',
+    name: 'Selecione aqui...',
     numbersAvailableToChoose: 0,
     qtyNumbersToBet: [],
   },
