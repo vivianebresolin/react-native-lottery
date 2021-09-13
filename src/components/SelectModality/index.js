@@ -25,7 +25,7 @@ export const SelectModality = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Title fontSize={FONT_SIZE_MEDIUM} mb={2}>
+        <Title fontSize={FONT_SIZE_MEDIUM} mb={-6}>
           Escolha a modalidade:
         </Title>
       </View>
@@ -49,9 +49,9 @@ export const SelectModality = () => {
         </Picker>
       </View>
       {arrayQtyNumbersToBet.length !== 0 && (
-        <View>
+        <View style={styles.qtyNumbersContainer}>
           <View>
-            <Title fontSize={FONT_SIZE_MEDIUM} mb={2}>
+            <Title fontSize={FONT_SIZE_MEDIUM} mb={-6}>
               Quantidade de números:
             </Title>
           </View>
@@ -80,6 +80,9 @@ const styles = StyleSheet.create({
   container: {
     width: '60%',
     marginBottom: 16,
+  },
+  qtyNumbersContainer: {
+    marginTop: 8,
   },
   select: {
     width: '65%',

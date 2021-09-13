@@ -8,6 +8,21 @@ export const NumbersProvider = props => {
   const [arrayQtyNumbersToBet, setArrayQtyNumbersToBet] = useState([]);
   const [qtyNumbersToGenerate, setQtyNumbersToGenerate] = useState(0);
   const [maxNumber, setMaxNumber] = useState(0);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    setMaxNumber(modalities[indexSelectedModality].numbersAvailableToChoose);
+  }, [modalities, indexSelectedModality]);
+
+  useEffect(() => {
+    setQtyNumbersToGenerate(arrayQtyNumbersToBet[0]);
+  }, [arrayQtyNumbersToBet]);
+
+  useEffect(() => {
+    indexSelectedModality === 0
+      ? setButtonDisabled(true)
+      : setButtonDisabled(false);
+  }, [indexSelectedModality]);
 
   function getArrayQtyNumbersToBet(index) {
     const arrayOfQtyNumbers = modalities[index].qtyNumbersToBet;
@@ -18,14 +33,6 @@ export const NumbersProvider = props => {
     setQtyNumbersToGenerate(number);
   }
 
-  useEffect(() => {
-    setMaxNumber(modalities[indexSelectedModality].numbersAvailableToChoose);
-  }, [modalities, indexSelectedModality]);
-
-  useEffect(() => {
-    setQtyNumbersToGenerate(arrayQtyNumbersToBet[0]);
-  }, [arrayQtyNumbersToBet]);
-
   return (
     <NumbersContext.Provider
       value={{
@@ -34,6 +41,7 @@ export const NumbersProvider = props => {
         qtyNumbersToGenerate,
         getQtyNumbersToGenerate,
         maxNumber,
+        buttonDisabled,
       }}>
       {props.children}
     </NumbersContext.Provider>

@@ -1,13 +1,19 @@
-import React, { useContext, useState } from 'react';
-import { Button, View, StyleSheet } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { Button, View, StyleSheet, ScrollView } from 'react-native';
 
+import ModalitiesContext from '../../context/ModalitiesContext';
 import NumbersContext from '../../context/NumbersContext';
 import { LotteryBall } from '../LotteryBall/index';
 
 export const LotteryNumbers = () => {
-  const { qtyNumbersToGenerate, maxNumber } = useContext(NumbersContext);
+  const { indexSelectedModality } = useState(ModalitiesContext);
+  const { qtyNumbersToGenerate, maxNumber, buttonDisabled } =
+    useContext(NumbersContext);
   const [numbersArray, setNumbersArray] = useState([]);
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    setNumbersArray([]);
+  }, [indexSelectedModality, qtyNumbersToGenerate]);
 
   function getNotRepeatedNumber(nums) {
     const newNumber = parseInt(Math.random() * maxNumber, 10) + 1;
@@ -15,12 +21,12 @@ export const LotteryNumbers = () => {
   }
 
   function getNumbers() {
-    const numbers = Array(qtyNumbersToGenerate)
+    const generatedNumbers = Array(qtyNumbersToGenerate)
       .fill()
       .reduce(n => [...n, getNotRepeatedNumber(n)], [])
       .sort((a, b) => a - b);
 
-    setNumbersArray(numbers);
+    setNumbersArray(generatedNumbers);
   }
 
   return (
@@ -33,12 +39,14 @@ export const LotteryNumbers = () => {
           disabled={buttonDisabled}
         />
       </View>
-      <View style={styles.generatedNumbers}>
-        {numbersArray &&
-          numbersArray.map(number => (
-            <LotteryBall key={number} number={number} />
-          ))}
-      </View>
+      <ScrollView>
+        <View style={styles.generatedNumbers}>
+          {numbersArray &&
+            numbersArray.map(number => (
+              <LotteryBall key={number} number={number} />
+            ))}
+        </View>
+      </ScrollView>
     </>
   );
 };
@@ -49,6 +57,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   generatedNumbers: {
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',

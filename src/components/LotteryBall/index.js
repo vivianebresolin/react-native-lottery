@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+
 import { FONT_SIZE_MEDIUM } from '../../styles/styles';
 
 export const LotteryBall = ({ number }) => {
