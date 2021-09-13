@@ -5,6 +5,8 @@ import ModalitiesContext from '../../context/ModalitiesContext';
 import NumbersContext from '../../context/NumbersContext';
 import { LotteryBall } from '../LotteryBall/index';
 
+import { BUTTON_BG } from '../../styles/styles';
+
 export const LotteryNumbers = () => {
   const { indexSelectedModality } = useState(ModalitiesContext);
   const { qtyNumbersToGenerate, maxNumber, buttonDisabled } =
@@ -35,7 +37,7 @@ export const LotteryNumbers = () => {
         <Button
           title="Gerar números"
           onPress={getNumbers}
-          color="#239B56"
+          color={BUTTON_BG}
           disabled={buttonDisabled}
         />
       </View>
@@ -57,9 +59,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   generatedNumbers: {
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    paddingBottom: 6,
   },
 });

@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-import { FONT_SIZE_MEDIUM } from '../../styles/styles';
+import {
+  BALL_BG,
+  FONT_COLOR_SECONDARY,
+  FONT_SIZE_MEDIUM,
+} from '../../styles/styles';
 
 export const LotteryBall = ({ number }) => {
   return (
@@ -15,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     width: 50,
     height: 50,
-    backgroundColor: '#E5E7E9',
+    backgroundColor: BALL_BG,
     borderRadius: 50,
     margin: 5,
     alignItems: 'center',
@@ -24,6 +28,6 @@ const styles = StyleSheet.create({
   number: {
     fontSize: FONT_SIZE_MEDIUM,
     fontWeight: 'bold',
-    color: '#2E4053',
+    color: FONT_COLOR_SECONDARY,
   },
 });

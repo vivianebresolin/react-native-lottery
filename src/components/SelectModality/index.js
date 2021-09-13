@@ -32,6 +32,7 @@ export const SelectModality = () => {
       <View style={styles.selectContainer}>
         <Picker
           style={styles.select}
+          dropdownIconColor={'#fff'}
           selectedValue={selectedModality}
           onValueChange={(modalityName, modalityIndex) => {
             updateSelectedModality(modalityName);
@@ -58,6 +59,7 @@ export const SelectModality = () => {
           <View style={styles.selectContainer}>
             <Picker
               style={styles.select}
+              dropdownIconColor={'#fff'}
               selectedValue={qtyNumbersToGenerate}
               onValueChange={qty => getQtyNumbersToGenerate(qty)}>
               {arrayQtyNumbersToBet &&
@@ -78,14 +80,18 @@ export const SelectModality = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '60%',
+    width: '80%',
     marginBottom: 16,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    borderRadius: 6,
+    paddingTop: 16,
   },
   qtyNumbersContainer: {
     marginTop: 8,
   },
   select: {
-    width: '65%',
+    width: '50%',
+    color: '#fff',
   },
   selectContainer: {
     alignItems: 'center',
