@@ -1,4 +1,4 @@
-# Números aleatórios para loteria :four_leaf_clover:
+# App to generate random numbers to play in the lottery :four_leaf_clover:
 
 <br />
 
@@ -12,20 +12,20 @@
 
 <br />
 
-Esta é uma aplicação mobile que tem por finalidade gerar números aleatórios para jogar na loteria.
+This is a mobile application that aims to generate random numbers to play in the lottery.
 
 <br />
 
-## :hammer_and_wrench: Funcionalidades:
+## :hammer_and_wrench: Features:
 
-<p>:moneybag: A aplicação inicia com o botão para gerar os números desabilitado, sendo necessário primeiramente que o usuário informe para qual a modalidade da loteria (exemplo: Mega-Sena) gostaria de gerar números.</p>
-<p>:moneybag: Tendo selecionado a modalidade, abrirá a opção para selecionar a quantidade de números que deverá ser gerada, tendo em vista que as quantidades mínima e máxima de números varia de acordo com a modalidade.</p>
-<p>:moneybag: A quantidade de números que aparece por default é a quantidade mínima.</p>
-<p>:moneybag: Após escolher a modalidade e a quantidade de números, basta clicar no botão "Gerar Números". Logo abaixo será mostrada uma sequência de números aleatórios em ordem crescente.</p>
+<p>:moneybag: The application starts with the button to generate the numbers disabled, and it's necessary for the user to first specify the game type of lottery (e.g. Mega-Sena) for which they would like to generate numbers.</p>
+<p>:moneybag: Once the game type of lottery is selected, the option to choose the quantity of numbers to be generated will appear, considering that the minimum and maximum quantities of numbers vary according to the lottery game.</p>
+<p>:moneybag: The default quantity of numbers displayed is the minimum quantity for the game type selected.</p>
+<p>:moneybag: After selecting the lottery game type and the quantity of numbers, simply click the "Generate Numbers" button. Right below, a sequence of randomly generated numbers will be displayed in ascending order.</p>
 
 <br />
 
-## :camera: Imagens da aplicação
+## :camera: Application images
 
 <div align="center" width="100%">
 
@@ -49,7 +49,7 @@ Esta é uma aplicação mobile que tem por finalidade gerar números aleatórios
 
 <br />
 
-## :man_technologist: Tecnologias e ferramentas utilizadas:
+## :man_technologist: Technologies and tools used:
 
 - React Native
 - Javascript
@@ -59,24 +59,24 @@ Esta é uma aplicação mobile que tem por finalidade gerar números aleatórios
 
 <br />
 
-## :computer: Rodando o projeto no localhost:
+## :computer: Running the project locally:
 
-Para rodar essa aplicação em sua máquina local, sugere-se o download do Android Studio para fazer uso do emulador Android e o VS Code para edição do código.
-Verifique na documentação do React Native se seu computador está configurado e com todas as ferramentas instaladas necessárias para rodar esse projeto (https://reactnative.dev/docs/environment-setup).
-
-<br />
-
-Faça o download ou um clone do projeto e, pelo terminal, estando dentro da pasta da aplicação, execute os seguintes comandos:
+To run this application on your local machine, I suggest downloading Android Studio to make use of the Android emulator and VS Code to edit the code.
+Check the React Native documentation if your computer is set up and has all the necessary tools installed to run this project (https://reactnative.dev/docs/environment-setup).
 
 <br />
 
-1 - Para fazer o download das dependências:
+Download or clone the project, and from the terminal, inside the application folder, execute the following commands:
+
+<br />
+
+1 - To download the dependencies:
 
 ### `npm install`
 
 <br />
 
-2 - Para inicializar a aplicação:
+2 - To start the application:
 
 ### `npx react-native run-android`
 
